@@ -14,11 +14,11 @@ public class AuthService {
 
     public void register(RegisterRequest request) {
         User user = new User(
-            request.email,
-            request.password,
-            request.firstName,
-            request.lastName,
-            request.role != null ? request.role : "ROLE_USER"
+            request.getEmail(),
+            request.getPassword(),
+            request.getFirstName(),
+            request.getLastName(),
+            request.getRole() != null ? request.getRole() : "ROLE_USER"
         );
         userRepository.save(user);
     }
