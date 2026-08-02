@@ -1,18 +1,31 @@
 package com.bikerental.controller;
 
 import com.bikerental.dto.request.RegisterRequest;
+import com.bikerental.entity.User;
+// import com.bikerental.repository.UserRepository;
 import com.bikerental.service.AuthService;
+
+import java.util.List;
+// import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
+    // private final UserRepository userRepository;
+    
     @Autowired
     private AuthService authService;
+
+    // AuthController(UserRepository userRepository) {
+    //     this.userRepository = userRepository;
+    // }
 
     @GetMapping("/health")
     public ResponseEntity<?> health() {
@@ -33,6 +46,18 @@ public class AuthController {
                     .body("Registration failed: " + e.getMessage());
         }
     }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return authService.getAllUsersList();
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return authService.getUserById(id);
+    }
+    
+    
 
     // @GetMapping("/login")
     // public String login(@RequestBody RegisterRequest request) {
