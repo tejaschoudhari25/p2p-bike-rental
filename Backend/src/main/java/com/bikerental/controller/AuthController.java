@@ -48,15 +48,30 @@ public class AuthController {
     }
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return authService.getAllUsersList();
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> li = authService.getAllUsersList();
+        return ResponseEntity.ok(li); 
+        // return authService.getAllUsersList();
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return authService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User u = authService.getUserById(id);
+        return ResponseEntity.ok(u);
+        // return authService.getUserById(id);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id){
+        authService.deleteUserById(id);
+        return ResponseEntity.ok("deleted the user");
     }
     
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+    User user = authService.updateUser(id, updatedUser);
+    return ResponseEntity.ok(user);
+}
     
 
     // @GetMapping("/login")

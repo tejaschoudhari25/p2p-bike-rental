@@ -35,4 +35,20 @@ public class AuthService {
     public User getUserById(Long id){
         return userRepository.findById(id).orElse(null);
     }
+
+    public void deleteUserById(Long id){
+        userRepository.deleteById(id);
+    }
+
+    public User updateUser(Long id, User updatedUser) {
+    User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    user.setFirstName(updatedUser.getFirstName());
+    user.setLastName(updatedUser.getLastName());
+    user.setEmail(updatedUser.getEmail());
+    user.setRole(updatedUser.getRole());
+
+    return userRepository.save(user);
+}
 }
