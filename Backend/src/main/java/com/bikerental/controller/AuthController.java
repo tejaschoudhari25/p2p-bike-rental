@@ -1,5 +1,6 @@
 package com.bikerental.controller;
 
+import com.bikerental.dto.request.LoginRequest;
 import com.bikerental.dto.request.RegisterRequest;
 import com.bikerental.entity.User;
 // import com.bikerental.repository.UserRepository;
@@ -69,15 +70,20 @@ public class AuthController {
     
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
-    User user = authService.updateUser(id, updatedUser);
-    return ResponseEntity.ok(user);
-}
+        User user = authService.updateUser(id, updatedUser);
+        return ResponseEntity.ok(user);
+    }
     
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-    // @GetMapping("/login")
-    // public String login(@RequestBody RegisterRequest request) {
-    //     System.out.println("LOGIN API HIT ✅");
-    //     // authService.login(request);
-    //     return "User logged in successfully ✅";
-    // }
+        try {
+            String response = authService.login(request);
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    
 }

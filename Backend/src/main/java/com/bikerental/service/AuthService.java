@@ -1,5 +1,6 @@
 package com.bikerental.service;
 
+import com.bikerental.dto.request.LoginRequest;
 import com.bikerental.dto.request.RegisterRequest;
 import com.bikerental.entity.User;
 import com.bikerental.repository.UserRepository;
@@ -41,14 +42,30 @@ public class AuthService {
     }
 
     public User updateUser(Long id, User updatedUser) {
-    User user = userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-    user.setFirstName(updatedUser.getFirstName());
-    user.setLastName(updatedUser.getLastName());
-    user.setEmail(updatedUser.getEmail());
-    user.setRole(updatedUser.getRole());
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setEmail(updatedUser.getEmail());
+        user.setRole(updatedUser.getRole());
 
-    return userRepository.save(user);
-}
+        return userRepository.save(user);
+    }
+
+    // public User loginUser(String email, String password){
+
+    // }
+
+    public String login(LoginRequest request) {
+
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!user.getPassword().equals(request.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        return "Login Successful";
+    }
 }
