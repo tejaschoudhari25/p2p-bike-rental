@@ -14,14 +14,14 @@ public class Bike {
     private String brand;
     private String model;
 
-    private Long pricePerDay;
+    private Double pricePerDay;
 
     private String city;
-    private String available;
+    private Boolean available;
 
     public Bike() {}
 
-    public Bike(String name, String brand, String model, Long pricePerDay, String city, String available) {
+    public Bike(String name, String brand, String model, Double pricePerDay, String city, Boolean available) {
         this.name = name;
         this.brand = brand;
         this.model = model;
@@ -41,13 +41,13 @@ public class Bike {
     public String getModel(){ return model; }
     public void setModel(String model){ this.model = model; }
 
-    public Long getPricePerDay(){ return pricePerDay; }
-    public void setPricePerDay(Long pricePerDay){ this.pricePerDay = pricePerDay; }
+    public Double getPricePerDay(){ return pricePerDay; }
+    public void setPricePerDay(Double pricePerDay){ this.pricePerDay = pricePerDay; }
 
     public String getCity(){ return city; }
     public void setCity(String city){ this.city = city; }
 
-    public String getAvailable(){ return available; }
-    public void setAvailable(String available){ this.available = available; }
+    public Boolean getAvailable(){ return available; }
+    public void setAvailable(Boolean available){ this.available = available; }
 
 }
