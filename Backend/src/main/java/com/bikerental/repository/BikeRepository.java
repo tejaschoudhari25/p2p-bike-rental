@@ -8,5 +8,4 @@ import com.bikerental.entity.Bike;
 
 public interface BikeRepository extends JpaRepository<Bike, Long> {
 
-    Optional<Bike> findByEmail(String email);
 }
