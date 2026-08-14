@@ -1,7 +1,5 @@
 package com.bikerental.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bikerental.entity.Bike;

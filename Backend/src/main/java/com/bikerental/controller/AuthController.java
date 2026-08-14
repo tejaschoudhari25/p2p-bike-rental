@@ -3,11 +3,9 @@ package com.bikerental.controller;
 import com.bikerental.dto.request.LoginRequest;
 import com.bikerental.dto.request.RegisterRequest;
 import com.bikerental.entity.User;
-// import com.bikerental.repository.UserRepository;
 import com.bikerental.service.AuthService;
 
 import java.util.List;
-// import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
