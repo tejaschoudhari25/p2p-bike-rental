@@ -7,42 +7,78 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "booking")
 public class Booking {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-    private Long bikeId;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private String status; 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Booking(){}
-    
-    public Booking(Long userId, Long bikeId, LocalDate startDate, LocalDate endDate, String status){
-        this.userId = userId;
-        this.bikeId = bikeId;
+    @ManyToOne
+    @JoinColumn(name = "bike_id")
+    private Bike bike;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
+    private String status;
+
+    public Booking() {
+    }
+
+    public Booking(User user, Bike bike, LocalDate startDate,
+                   LocalDate endDate, String status) {
+        this.user = user;
+        this.bike = bike;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
-    } 
+    }
 
-    public Long getId(){ return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Long getUserId(){ return userId; }
-    public void setUserId(Long userId){ this.userId = userId; }
+    public User getUser() {
+        return user;
+    }
 
-    public Long getBikeId(){ return bikeId; }
-    public void setBikeId(Long bikeId){ this.bikeId = bikeId; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public LocalDate getStartDate(){ return startDate; }
-    public void setStartDate(LocalDate startDate){ this.startDate = startDate; }
+    public Bike getBike() {
+        return bike;
+    }
 
-    public LocalDate getEndDate(){ return endDate; }
-    public void setEndDate(LocalDate endDate){ this.endDate = endDate; }
+    public void setBike(Bike bike) {
+        this.bike = bike;
+    }
 
-    public String getStatus(){ return status; }
-    public void setStatus(String status){ this.status = status; }
-    
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

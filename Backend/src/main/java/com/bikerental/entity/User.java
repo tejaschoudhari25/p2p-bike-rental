@@ -1,5 +1,7 @@
 package com.bikerental.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -22,8 +24,11 @@ public class User {
     @Column(nullable = false)
     private String role; // ROLE_USER, ROLE_OWNER, ROLE_ADMIN
 
-    // Constructors
-    public User() {}
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
+
+    public User() {
+    }
 
     public User(String email, String password, String firstName, String lastName, String role) {
         this.email = email;
@@ -33,21 +38,55 @@ public class User {
         this.role = role;
     }
 
-    // Getters & Setters
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getPassword() {
+        return password;
+    }
 
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }
